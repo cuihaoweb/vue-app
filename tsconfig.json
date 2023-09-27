@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "esnext",
+        "moduleResolution": "nodenext",
+        "strict": true,
+        "noImplicitThis": true,
+        "isolatedModules": true,
+        "resolveJsonModule": true,
+        "allowJs": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "baseUrl": "./",
+        "paths": {
+            "@/*": [
+                "src/*",
+                "src/*.vue",
+                "src/*/index.vue"
+            ]
+        }
+    },
+    "include": ["src", "__tests__"],
+    "exclude": [
+        "node_modules"
+    ]
+}

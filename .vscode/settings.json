@@ -1,0 +1,17 @@
+{
+    /* ========================================= eslint ========================================== */
+    "editor.codeActionsOnSave": {
+        "source.fixAll": true // 是否自动修复eslint
+    },
+    // 工作目录
+    "eslint.workingDirectories": [
+        ".eslintrc.js",
+        ".eslintignore"
+    ],
+    "files.associations": {
+        "*.json": "jsonc"
+    },
+    "cSpell.words": [
+        "nodenext"
+    ]
+}

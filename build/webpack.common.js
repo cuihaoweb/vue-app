@@ -54,6 +54,14 @@ module.exports = {
                 ]
             },
             {
+                test: /\.scss$/,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'sass-loader'
+                ]
+            },
+            {
                 test: /\.css$/,
                 use: [
                     'style-loader',
@@ -61,7 +69,7 @@ module.exports = {
                 ]
             },
             {
-                test: /\.(woff|woff2|ttf|eot|svg|png)(#.+)?$/,
+                test: /\.(woff|woff2|ttf|eot|svg|png|jpg)(#.+)?$/,
                 use: [
                     {
                         loader: 'url-loader'

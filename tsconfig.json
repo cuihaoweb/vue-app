@@ -2,14 +2,15 @@
     "compilerOptions": {
         "target": "esnext",
         "module": "esnext",
-        "moduleResolution": "nodenext",
+        "moduleResolution": "node",
+        "importHelpers": true,
         "strict": true,
         "noImplicitThis": true,
         "isolatedModules": true,
         "resolveJsonModule": true,
-        "allowJs": true,
         "esModuleInterop": true,
         "allowSyntheticDefaultImports": true,
+        "allowJs": true,
         "baseUrl": "./",
         "paths": {
             "@/*": [
@@ -17,9 +18,19 @@
                 "src/*.vue",
                 "src/*/index.vue"
             ]
-        }
+        },
+        "types": [
+            "node"
+        ]
     },
-    "include": ["src", "__tests__"],
+    "include": [
+        "src/**/*.ts",
+        "src/**/*.tsx",
+        "src/**/*.vue",
+        "tests/**/*.ts",
+        "tests/**/*.tsx",
+        "typings"
+    ],
     "exclude": [
         "node_modules"
     ]

@@ -29,6 +29,118 @@
                         </a>
                     </li>
                 </ul>
+
+                <ul class="layui-nav fly-nav-user">
+                    <!-- 未登入的状态 -->
+                    <template v-if="!isShow">
+                        <li class="layui-nav-item">
+                            <a
+                                class="iconfont icon-touxiang layui-hide-xs"
+                                to="/user123123"
+                            />
+                        </li>
+                        <li class="layui-nav-item">
+                            <router-link :to="{ name: 'login' }">
+                                登入
+                            </router-link>
+                        </li>
+                        <li class="layui-nav-item">
+                            <router-link :to="{ name: 'reg' }">
+                                注册
+                            </router-link>
+                        </li>
+                        <li class="layui-nav-item layui-hide-xs">
+                            <a
+                                href
+                                onclick="layer.msg('正在通过QQ登入', {icon:16, shade: 0.1, time:0})"
+                                title="QQ登入"
+                                class="iconfont icon-qq"
+                            />
+                        </li>
+                        <li class="layui-nav-item layui-hide-xs">
+                            <a
+                                href
+                                onclick="layer.msg('正在通过微博登入', {icon:16, shade: 0.1, time:0})"
+                                title="微博登入"
+                                class="iconfont icon-weibo"
+                            />
+                        </li>
+                    </template>
+
+                    <!-- 登入后的状态 -->
+                    <template v-else>
+                        <!-- 调整了Hover的区域 -->
+                        <li
+                            class="layui-nav-item"
+                            @mouseover="toggle(true)"
+                            @mouseleave="toggle(false)"
+                        >
+                            <a
+                                class="fly-nav-avatar"
+                                :to="{ name: 'center' }"
+                            >
+                                <cite class="layui-hide-xs">{{ userInfo.name }}</cite>
+                                <!-- <i class="iconfont icon-renzheng layui-hide-xs" title="认证信息：layui 作者"></i> -->
+                                <i
+                                    v-show="userInfo.isVip !== '0'"
+                                    class="layui-badge fly-badge-vip layui-hide-xs"
+                                >VIP{{ userInfo.isVip }}</i>
+                                <img :src="userInfo.pic">
+                            </a>
+                            <dl
+                                class="layui-nav-child layui-anim layui-anim-upbit"
+                                :class="{ 'layui-show': on }"
+                            >
+                                <dd>
+                                    <a :to="{ name: 'info' }">
+                                        <i class="layui-icon">&#xe620;</i>基本设置
+                                    </a>
+                                </dd>
+                                <dd>
+                                    <a :to="{ name: 'msg' }">
+                                        <i
+                                            class="iconfont icon-tongzhi"
+                                            style="top: 4px"
+                                        />我的消息
+                                    </a>
+                                </dd>
+                                <dd>
+                                    <a :to="{ name: 'home', params: { uid: userInfo._id } }">
+                                        <i
+                                            class="layui-icon"
+                                            style="margin-left: 2px; font-size: 22px"
+                                        >&#xe68e;</i>我的主页
+                                    </a>
+                                </dd>
+                                <hr style="margin: 5px 0">
+                                <dd>
+                                    <a
+                                        href="javascript: void(0)"
+                                        style="text-align: center"
+                                        @click="logout()"
+                                    >退出</a>
+                                </dd>
+                            </dl>
+                        </li>
+                        <div
+                            v-show="num.message && num.message !== 0"
+                            class="fly-nav-msg"
+                        >
+                            {{ num.message }}
+                        </div>
+                        <transition name="fade">
+                            <div
+                                v-show="hasMsg"
+                                class="layui-layer-tips"
+                            >
+                                <div class="layui-layer-content">
+                                    您有{{ num.message }}条未读消息
+                                    <i class="layui-layer-TipsG layui-layer-TipsB" />
+                                </div>
+                            </div>
+                        </transition>
+                    </template>
+                </ul>
             </div>
         </div>
     </div>
@@ -36,45 +148,45 @@
 
 <script lang="ts">
 import {computed, defineComponent, reactive} from 'vue';
-// import {confirm} from '@/components/modules/alert';
-// import router from '@/router';
-// import store from '@/store';
-// import toggleUtils from '@/utils/toggle';
+import {confirm} from '@/components/modules/alert';
+import router from '@/router';
+import store from '@/store';
+import toggleUtils from '@/utils/toggle';
 
 export default defineComponent({
     setup () {
-        // const {toggle, on} = toggleUtils(false, 500);
+        const {toggle, on} = toggleUtils(false, 500);
 
-        // const state = reactive({
-        //     isHover: false,
-        //     hoverCtrl: { },
-        //     hasMsg: false
-        // });
+        const state = reactive({
+            isHover: false,
+            hoverCtrl: { },
+            hasMsg: false
+        });
 
-        // const logout = () => {
-        //     confirm(
-        //         '确定退出吗？',
-        //         () => {
-        //             localStorage.clear();
-        //             store.commit('setToken', '');
-        //             store.commit('setUserInfo', {});
-        //             store.commit('setIsLogin', false);
-        //             router.push({name: 'index'});
-        //         },
-        //         () => {
-        //             console.log('cancel');
-        //         }
-        //     );
-        // };
+        const logout = () => {
+            confirm(
+                '确定退出吗？',
+                () => {
+                    localStorage.clear();
+                    store.commit('setToken', '');
+                    store.commit('setUserInfo', {});
+                    store.commit('setIsLogin', false);
+                    router.push({name: 'index'});
+                },
+                () => {
+                    console.log('cancel');
+                }
+            );
+        };
 
         return {
-            // ...state,
-            // num: computed(() => store.state.num),
-            // isShow: computed(() => store.state.isLogin),
-            // userInfo: computed(() => store.state.userInfo),
-            // toggle,
-            // on,
-            // logout
+            ...state,
+            num: computed(() => store.state.num),
+            isShow: computed(() => store.state.isLogin),
+            userInfo: computed(() => store.state.userInfo),
+            toggle,
+            on,
+            logout
         };
     }
 });

@@ -14,6 +14,7 @@ export default defineComponent({
         'imooc-header': Header,
         'imooc-footer': Footer
     },
+    // 测试Alert组件 window.vue.$alert('msg')
     mounted () {
         window.vue = this;
     }
@@ -21,8 +22,8 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@import "assets/css/global.css";
-@import "assets/css/layui-layer/layer.css";
+@import "@/assets/css/global.css";
+@import "@/assets/css/layui-layer/layer.css";
 // @import "assets/css/utilities.scss";
 
 // 公用样式

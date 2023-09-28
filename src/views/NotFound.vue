@@ -1,25 +1,17 @@
 <template>
-    <div class="layui-container flex">
-        <img
-            src="@/assets/img/icon-404.png"
-            width="100px"
-        >
-        <p>找不到页面了</p>
-        <router-link
-            class="layui-btn"
-            to="/"
-        >
-            回到首页
-        </router-link>
-    </div>
+  <div class="layui-container flex">
+    <img src="@/assets/img/icon-404.png" width="100px" alt />
+    <p>找不到页面了</p>
+    <router-link class="layui-btn" to="/">回到首页</router-link>
+  </div>
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue';
+import { defineComponent } from 'vue'
 
 export default defineComponent({
-    name: 'NotFound'
-});
+  name: 'notfound'
+})
 </script>
 
 <style lang="scss" scoped>

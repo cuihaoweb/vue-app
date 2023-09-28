@@ -1,11 +1,12 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {VueLoaderPlugin} = require('vue-loader');
+const webpack = require('webpack');
 
 module.exports = {
     mode: 'development',
     entry: {
-        app: path.resolve(__dirname, '../src/main.ts')
+        app: path.resolve(__dirname, '../src/main.tsx')
     },
     output: {
         path: path.resolve(__dirname, '../dist'),
@@ -13,7 +14,7 @@ module.exports = {
         publicPath: '/'
     },
     resolve: {
-        extensions: ['.ts', '.tsx', '.js', '.jsx', '.vue', '.json'],
+        extensions: ['.ts', '.tsx', '.js', '.jsx', '.vue', '.json', '.scss', '.less', '.css'],
         alias: {
             '@': path.resolve(__dirname, '../src')
         }
@@ -21,7 +22,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.ts$/,
+                test: /\.[jt]sx?$/,
                 exclude: /node_modules/,
                 use: [
                     'babel-loader',
@@ -29,16 +30,9 @@ module.exports = {
                         loader: 'esbuild-loader',
                         options: {
                             loader: 'tsx',
-                            target: 'es6'
+                            target: 'es2015'
                         }
                     }
-                ]
-            },
-            {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                use: [
-                    'babel-loader'
                 ]
             },
             {
@@ -82,6 +76,16 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, '../public/index.html')
         }),
-        new VueLoaderPlugin()
+        new VueLoaderPlugin(),
+        new webpack.ProvidePlugin({
+            h: ['vue', 'h']
+        }),
+        new webpack.DefinePlugin({
+            process: JSON.stringify({
+                env: {
+                    NODE_ENV: process.env.NODE_ENV
+                }
+            })
+        })
     ]
 };

@@ -11,6 +11,9 @@ dependencies:
   '@vee-validate/rules':
     specifier: ^4.11.7
     version: 4.11.7(vue@3.3.4)
+  '@vue/compiler-sfc':
+    specifier: ^3.3.4
+    version: 3.3.4
   axios:
     specifier: ^1.5.1
     version: 1.5.1
@@ -23,6 +26,9 @@ dependencies:
   qs:
     specifier: ^6.11.2
     version: 6.11.2
+  react:
+    specifier: ^18.2.0
+    version: 18.2.0
   uuid:
     specifier: ^9.0.1
     version: 9.0.1
@@ -32,6 +38,9 @@ dependencies:
   vue:
     specifier: ^3.3.4
     version: 3.3.4
+  vue-fragment:
+    specifier: ^1.6.0
+    version: 1.6.0(vue@3.3.4)
   vue-router:
     specifier: ^4.2.5
     version: 4.2.5(vue@3.3.4)
@@ -43,6 +52,15 @@ devDependencies:
   '@babel/eslint-parser':
     specifier: ^7.22.15
     version: 7.22.15(@babel/core@7.23.0)(eslint@8.50.0)
+  '@babel/plugin-transform-react-jsx':
+    specifier: ^7.22.15
+    version: 7.22.15(@babel/core@7.23.0)
+  '@babel/preset-env':
+    specifier: ^7.22.20
+    version: 7.22.20(@babel/core@7.23.0)
+  '@babel/preset-typescript':
+    specifier: ^7.23.0
+    version: 7.23.0(@babel/core@7.23.0)
   '@types/node':
     specifier: ^20.7.0
     version: 20.7.0
@@ -106,6 +124,9 @@ devDependencies:
   style-loader:
     specifier: ^3.3.3
     version: 3.3.3(webpack@5.88.2)
+  ts-loader:
+    specifier: ^9.4.4
+    version: 9.4.4(typescript@5.2.2)(webpack@5.88.2)
   typescript:
     specifier: ^5.2.2
     version: 5.2.2
@@ -114,7 +135,7 @@ devDependencies:
     version: 4.1.1(webpack@5.88.2)
   vue-loader:
     specifier: ^17.2.2
-    version: 17.2.2(vue@3.3.4)(webpack@5.88.2)
+    version: 17.2.2(@vue/compiler-sfc@3.3.4)(vue@3.3.4)(webpack@5.88.2)
   webpack:
     specifier: ^5.88.2
     version: 5.88.2(esbuild@0.19.3)(webpack-cli@5.1.4)
@@ -662,6 +683,16 @@ packages:
       '@babel/helper-plugin-utils': 7.22.5
     dev: true
 
+  /@babel/plugin-syntax-typescript@7.22.5(@babel/core@7.23.0):
+    resolution: {integrity: sha512-1mS2o03i7t1c6VzH6fdQ3OA8tcEIxwG18zIPRp+UY1Ihv6W+XZzBCVxExF9upussPXJ0xE9XRHwMoNs1ep/nRQ==}
+    engines: {node: '>=6.9.0'}
+    peerDependencies:
+      '@babel/core': ^7.0.0-0
+    dependencies:
+      '@babel/core': 7.23.0
+      '@babel/helper-plugin-utils': 7.22.5
+    dev: true
+
   /@babel/plugin-syntax-unicode-sets-regex@7.18.6(@babel/core@7.23.0):
     resolution: {integrity: sha512-727YkEAPwSIQTv5im8QHz3upqp92JTWhidIC81Tdx4VJYIte/VndKf1qKrfnnhPLiPghStWfvC/iFaMCQu7Nqg==}
     engines: {node: '>=6.9.0'}
@@ -1090,6 +1121,20 @@ packages:
       '@babel/helper-plugin-utils': 7.22.5
     dev: true
 
+  /@babel/plugin-transform-react-jsx@7.22.15(@babel/core@7.23.0):
+    resolution: {integrity: sha512-oKckg2eZFa8771O/5vi7XeTvmM6+O9cxZu+kanTU7tD4sin5nO/G8jGJhq8Hvt2Z0kUoEDRayuZLaUlYl8QuGA==}
+    engines: {node: '>=6.9.0'}
+    peerDependencies:
+      '@babel/core': ^7.0.0-0
+    dependencies:
+      '@babel/core': 7.23.0
+      '@babel/helper-annotate-as-pure': 7.22.5
+      '@babel/helper-module-imports': 7.22.15
+      '@babel/helper-plugin-utils': 7.22.5
+      '@babel/plugin-syntax-jsx': 7.22.5(@babel/core@7.23.0)
+      '@babel/types': 7.23.0
+    dev: true
+
   /@babel/plugin-transform-regenerator@7.22.10(@babel/core@7.23.0):
     resolution: {integrity: sha512-F28b1mDt8KcT5bUyJc/U9nwzw6cV+UmTeRlXYIl2TNqMMJif0Jeey9/RQ3C4NOd2zp0/TRsDns9ttj2L523rsw==}
     engines: {node: '>=6.9.0'}
@@ -1177,6 +1222,19 @@ packages:
     dependencies:
       '@babel/core': 7.23.0
       '@babel/helper-plugin-utils': 7.22.5
+    dev: true
+
+  /@babel/plugin-transform-typescript@7.22.15(@babel/core@7.23.0):
+    resolution: {integrity: sha512-1uirS0TnijxvQLnlv5wQBwOX3E1wCFX7ITv+9pBV2wKEk4K+M5tqDaoNXnTH8tjEIYHLO98MwiTWO04Ggz4XuA==}
+    engines: {node: '>=6.9.0'}
+    peerDependencies:
+      '@babel/core': ^7.0.0-0
+    dependencies:
+      '@babel/core': 7.23.0
+      '@babel/helper-annotate-as-pure': 7.22.5
+      '@babel/helper-create-class-features-plugin': 7.22.15(@babel/core@7.23.0)
+      '@babel/helper-plugin-utils': 7.22.5
+      '@babel/plugin-syntax-typescript': 7.22.5(@babel/core@7.23.0)
     dev: true
 
   /@babel/plugin-transform-unicode-escapes@7.22.10(@babel/core@7.23.0):
@@ -1322,6 +1380,20 @@ packages:
       '@babel/helper-plugin-utils': 7.22.5
       '@babel/types': 7.23.0
       esutils: 2.0.3
+    dev: true
+
+  /@babel/preset-typescript@7.23.0(@babel/core@7.23.0):
+    resolution: {integrity: sha512-6P6VVa/NM/VlAYj5s2Aq/gdVg8FSENCg3wlZ6Qau9AcPaoF5LbN1nyGlR9DTRIw9PpxI94e+ReydsJHcjwAweg==}
+    engines: {node: '>=6.9.0'}
+    peerDependencies:
+      '@babel/core': ^7.0.0-0
+    dependencies:
+      '@babel/core': 7.23.0
+      '@babel/helper-plugin-utils': 7.22.5
+      '@babel/helper-validator-option': 7.22.15
+      '@babel/plugin-syntax-jsx': 7.22.5(@babel/core@7.23.0)
+      '@babel/plugin-transform-modules-commonjs': 7.23.0(@babel/core@7.23.0)
+      '@babel/plugin-transform-typescript': 7.22.15(@babel/core@7.23.0)
     dev: true
 
   /@babel/regjsgen@0.8.0:
@@ -4402,7 +4474,6 @@ packages:
 
   /js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
-    dev: true
 
   /js-yaml@4.1.0:
     resolution: {integrity: sha512-wpxZs9NoxZaJESJGIZTyDEaYpl0FKSA+FB9aJiyemKhMwkxQg63h4T1KJgUGHpTqPDNRcmmYLugrRjJlBtWvRA==}
@@ -4571,7 +4642,6 @@ packages:
     hasBin: true
     dependencies:
       js-tokens: 4.0.0
-    dev: true
 
   /lower-case@2.0.2:
     resolution: {integrity: sha512-7fm3l3NAF9WfN6W3JOmf5drwpVqX78JtoGJ3A6W0a6ZnldM41w2fV5D490psKFTpMds8TJse/eHLFFsNHHjHgg==}
@@ -5168,6 +5238,13 @@ packages:
   /react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
     dev: true
+
+  /react@18.2.0:
+    resolution: {integrity: sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==}
+    engines: {node: '>=0.10.0'}
+    dependencies:
+      loose-envify: 1.4.0
+    dev: false
 
   /readable-stream@2.3.8:
     resolution: {integrity: sha512-8p0AUk4XODgIewSi0l8Epjs+EVnWiK7NoDIEGU0HhE7+ZyY8D1IMY7odu5lRrFXGg71L15KG8QrPmum45RTtdA==}
@@ -5826,6 +5903,21 @@ packages:
       typescript: 5.2.2
     dev: true
 
+  /ts-loader@9.4.4(typescript@5.2.2)(webpack@5.88.2):
+    resolution: {integrity: sha512-MLukxDHBl8OJ5Dk3y69IsKVFRA/6MwzEqBgh+OXMPB/OD01KQuWPFd1WAQP8a5PeSCAxfnkhiuWqfmFJzJQt9w==}
+    engines: {node: '>=12.0.0'}
+    peerDependencies:
+      typescript: '*'
+      webpack: ^5.0.0
+    dependencies:
+      chalk: 4.1.2
+      enhanced-resolve: 5.15.0
+      micromatch: 4.0.5
+      semver: 7.5.4
+      typescript: 5.2.2
+      webpack: 5.88.2(esbuild@0.19.3)(webpack-cli@5.1.4)
+    dev: true
+
   /tslib@2.6.2:
     resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
     dev: true
@@ -6025,7 +6117,15 @@ packages:
       - supports-color
     dev: true
 
-  /vue-loader@17.2.2(vue@3.3.4)(webpack@5.88.2):
+  /vue-fragment@1.6.0(vue@3.3.4):
+    resolution: {integrity: sha512-a5T8ZZZK/EQzgVShEl374HbobUJ0a7v12BzOzS6Z/wd/5EE/5SffcyHC+7bf9hP3L7Yc0hhY/GhMdwFQ25O/8A==}
+    peerDependencies:
+      vue: ^2.5.16
+    dependencies:
+      vue: 3.3.4
+    dev: false
+
+  /vue-loader@17.2.2(@vue/compiler-sfc@3.3.4)(vue@3.3.4)(webpack@5.88.2):
     resolution: {integrity: sha512-aqNvKJvnz2A/6VWeJZodAo8XLoAlVwBv+2Z6dama+LHsAF+P/xijQ+OfWrxIs0wcGSJduvdzvTuATzXbNKkpiw==}
     peerDependencies:
       '@vue/compiler-sfc': '*'
@@ -6037,6 +6137,7 @@ packages:
       vue:
         optional: true
     dependencies:
+      '@vue/compiler-sfc': 3.3.4
       chalk: 4.1.2
       hash-sum: 2.0.0
       vue: 3.3.4

@@ -30,7 +30,9 @@ module.exports = {
                         loader: 'esbuild-loader',
                         options: {
                             loader: 'tsx',
-                            target: 'es2015'
+                            target: 'es2015',
+                            jsxFactory: 'h',
+                            jsxFragment: 'Fragment'
                         }
                     }
                 ]
@@ -78,7 +80,8 @@ module.exports = {
         }),
         new VueLoaderPlugin(),
         new webpack.ProvidePlugin({
-            h: ['vue', 'h']
+            h: ['vue', 'h'],
+            Fragment: ['vue', 'Fragment']
         }),
         new webpack.DefinePlugin({
             process: JSON.stringify({

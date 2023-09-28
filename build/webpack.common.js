@@ -5,6 +5,7 @@ const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const ENV = process.env.NODE_ENV;
+const IS_PRODUCT = ENV === 'production';
 
 module.exports = {
     target: 'web',
@@ -17,7 +18,7 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, '../dist'),
-        filename: 'js/[name].[hash:6].bundle.js',
+        filename: 'js/[name].[hash:8].bundle.js',
         publicPath: '/'
     },
     resolve: {
@@ -36,7 +37,7 @@ module.exports = {
                 test: /\.[jt]sx?$/,
                 exclude: /node_modules/,
                 use: [
-                    'babel-loader',
+                    IS_PRODUCT && 'babel-loader',
                     {
                         loader: 'esbuild-loader',
                         options: {
@@ -46,7 +47,7 @@ module.exports = {
                             jsxFragment: 'Fragment'
                         }
                     }
-                ]
+                ].filter(Boolean)
             },
             {
                 test: /\.vue$/,
@@ -57,7 +58,7 @@ module.exports = {
                 test: /\.less$/,
                 exclude: /node_modules/,
                 use: [
-                    ENV === 'production' ? MiniCssExtractPlugin.loader: 'style-loader',
+                    IS_PRODUCT ? MiniCssExtractPlugin.loader: 'style-loader',
                     'css-loader',
                     'less-loader'
                 ]
@@ -66,7 +67,7 @@ module.exports = {
                 test: /\.scss$/,
                 exclude: /node_modules/,
                 use: [
-                    ENV === 'production' ? MiniCssExtractPlugin.loader: 'style-loader',
+                    IS_PRODUCT ? MiniCssExtractPlugin.loader: 'style-loader',
                     'css-loader',
                     'sass-loader'
                 ]
@@ -74,7 +75,7 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: [
-                    ENV === 'production' ? MiniCssExtractPlugin.loader: 'style-loader',
+                    IS_PRODUCT ? MiniCssExtractPlugin.loader: 'style-loader',
                     'css-loader'
                 ]
             },
@@ -82,7 +83,7 @@ module.exports = {
                 test: /\.(woff|woff2|ttf|eot|svg|png|jpg|gif)(#.+)?$/,
                 type: 'asset',
                 generator: {
-                    filename: 'image/[hash][ext][query]'
+                    filename: 'image/[hash:8][ext][query]'
                 },
                 parser: {
                     dataUrlCondition: {
@@ -94,7 +95,11 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, '../public/index.html')
+            template: path.resolve(__dirname, '../index.ejs'),
+            templateParameters: {
+                title: 'vue App',
+                baseUrl: IS_PRODUCT ? './' : '/'
+            }
         }),
         new VueLoaderPlugin(),
         new webpack.ProvidePlugin({

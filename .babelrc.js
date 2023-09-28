@@ -1,6 +1,16 @@
 module.exports = {
     presets: [
-        '@vue/babel-preset-app'
+        ["@babel/preset-env", {
+            "useBuiltIns": "usage",
+            "corejs": 3,
+            "targets": {
+                "browsers": [
+                    "> 1%",
+                    "last 2 versions",
+                    "not dead"
+                ]
+            }
+        }]
     ],
     plugins: [
     ].filter(Boolean)
